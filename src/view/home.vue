@@ -103,7 +103,7 @@ export default {
 .list-group {
   width:240px;
   height:240px;
-  display: block;
+  display: block !important;
 }
 .list-group-item2 {
   cursor: move;
