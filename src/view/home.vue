@@ -15,10 +15,11 @@
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
+        @update="update"
       >
-        <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+        <!-- <transition-group type="transition" :name="!drag ? 'flip-list' : null"> -->
           <li
-            class="list-group-item"
+            class="list-group-item2"
             v-for="element in list"
             :key="element.order"
           >
@@ -31,7 +32,7 @@
             ></i>
             {{ element.name }}
           </li>
-        </transition-group>
+        <!-- </transition-group> -->
       </draggable>
     </div>
 
@@ -42,14 +43,12 @@
 <script>
 import draggable from "vuedraggable";
 const message = [
-  "vue.draggable",
-  "draggable",
-  "component",
-  "for",
-  "vue.js 2.0",
-  "based",
-  "on",
-  "Sortablejs"
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
 ];
 export default {
   name: "transition-example-2",
@@ -67,6 +66,9 @@ export default {
     };
   },
   methods: {
+    update(val){
+      console.log(this.list)
+    },
     sort() {
       this.list = this.list.sort((a, b) => a.order - b.order);
     }
@@ -99,12 +101,20 @@ export default {
   background: #c8ebfb;
 }
 .list-group {
-  min-height: 20px;
+  width:240px;
+  height:240px;
+  display: block;
 }
-.list-group-item {
+.list-group-item2 {
   cursor: move;
+  width:50px;
+  height:50px;
+  background: red;
+  display: inline-block;
+  margin:10px;
+  /* transition: all 2s; */
 }
-.list-group-item i {
+.list-group-item2 i {
   cursor: pointer;
 }
 </style>
