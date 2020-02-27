@@ -1,5 +1,6 @@
 <template>
-  <div class="row">
+  <div class="">
+    <div class="chang"> <img src="../assets/img/111.jpg" alt="asdf"> </div>
     <div class="col-2">
       <button class="btn btn-secondary button" @click="sort">
         To original order
@@ -59,6 +60,7 @@ export default {
   },
   data() {
     return {
+      // img:"../assets/img/chang.png",
       list: message.map((name, index) => {
         return { name, order: index + 1 };
       }),
@@ -86,7 +88,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.chang{
+
+  img{
+    display: inline-block;
+    width:50px;
+    height:50px;
+    border:1px solid red;
+  }
+}
 .button {
   margin-top: 35px;
 }
