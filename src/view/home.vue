@@ -77,7 +77,7 @@ export default {
     };
   },
   mounted(){
-    this.$router.push({name:"imgUp"})
+    this.$router.push({name:"fanye"})
   },
   methods: {
     update(val){

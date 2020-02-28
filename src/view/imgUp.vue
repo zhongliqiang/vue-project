@@ -1,7 +1,7 @@
 
 <template>
     <div class="dragDemo">
-        <input @change="fileChange($event)" type="file" id="upload_file" multiple style="display: none"/>
+        <input @change="fileChange($event)" type="file" accept="image/*" id="upload_file" multiple style="display: none"/>
 
         <div class="add" @click="chooseType">
             <div class="add-image" align="center">
@@ -52,6 +52,7 @@
                     //判断是否为文件夹
                     if (files[i].type != '') {
                         this.fileAdd(files[i]);
+                        // console.log("okok")
                     } else {
                         //文件夹处理
                         // this.folders(fileList.items[i]);
@@ -68,11 +69,14 @@
                     alert("请选择图片文件")
                     // this.$dialog.toast({mes: '请选择图片文件'});
                 } else {
+                    // let newUrl = window.URL.createObjectURL(file);
+                    // console.log(newUrl);
                     let reader = new FileReader();
                     let image = new Image();
                     let _this = this;
                     reader.readAsDataURL(file);
-                    reader.onload = function () {
+                    reader.onload = function (el) {
+                        console.log(el)
                         file.src = this.result;
                         image.src= file.src;
                         image.onload = function(){
