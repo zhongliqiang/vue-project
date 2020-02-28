@@ -1,43 +1,52 @@
 <template>
-  <div class="">
-    <div class="chang"> <img src="../assets/img/111.jpg" alt="asdf"> </div>
-    <div class="col-2">
-      <button class="btn btn-secondary button" @click="sort">
-        To original order
-      </button>
+  <div class="container-fluid">
+    <!-- <div class="chang"> <img src="../assets/img/111.jpg" alt="asdf"> </div> -->
+    <div class="row">
+      <div class="col-2">
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+          <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+          <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+          <el-tab-pane label="定时任务补偿" name="fourth">定时任务补偿</el-tab-pane>
+        </el-tabs>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-secondary button" @click="sort">
+          To original order
+        </button>
+      </div>
+      <div class="col-6">
+
+
+
+
+        <!-- 拖动插件 -->
+        <draggable
+          class="list-group"
+          tag="ul"
+          v-model="list"
+          v-bind="dragOptions"
+          @start="drag = true"
+          @end="drag = false"
+          @update="update">
+          <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+            <li
+              class="list-group-item2"
+              v-for="element in list"
+              :key="element.order">
+              <i :class="element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'"
+                @click="element.fixed = !element.fixed"
+                aria-hidden="true">
+              </i>
+              {{ element.name }}
+            </li>
+          </transition-group>
+        </draggable>
+      </div>
+
     </div>
 
-    <div class="col-6">
-      <h3>Transition</h3>
-      <draggable
-        class="list-group"
-        tag="ul"
-        v-model="list"
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
-        @update="update"
-      >
-        <!-- <transition-group type="transition" :name="!drag ? 'flip-list' : null"> -->
-          <li
-            class="list-group-item2"
-            v-for="element in list"
-            :key="element.order"
-          >
-            <i
-              :class="
-                element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'
-              "
-              @click="element.fixed = !element.fixed"
-              aria-hidden="true"
-            ></i>
-            {{ element.name }}
-          </li>
-        <!-- </transition-group> -->
-      </draggable>
-    </div>
 
-    <rawDisplayer class="col-3" :value="list" title="List" />
   </div>
 </template>
 
@@ -67,6 +76,9 @@ export default {
       drag: false
     };
   },
+  mounted(){
+    this.$router.push({name:"imgUp"})
+  },
   methods: {
     update(val){
       console.log(this.list)
@@ -89,8 +101,10 @@ export default {
 </script>
 
 <style lang="scss">
+.container{
+  width:100%;
+}
 .chang{
-
   img{
     display: inline-block;
     width:50px;
