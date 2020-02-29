@@ -159,9 +159,9 @@ export default {
 
       yepnope({
         test : Modernizr.csstransforms,
-        yep: ['../../static/turn.min.js'],
-        nope: ['../../static/turn.html4.min.js'],
-        both: ['../../static/css/basic.css'],
+        yep: ['./static/turn.min.js'],
+        nope: ['./static/turn.html4.min.js'],
+        both: ['./static/css/basic.css'],
         complete: loadApp
       });
 
