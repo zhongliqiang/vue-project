@@ -1,41 +1,52 @@
 <template>
   <div class="container-fluid">
     <div>fanye</div>
-    <div class="row">
-      <div class="col-md-2">
-       col-2
+    <div class="flipbook-viewport">
+      <div class="container2">
+        <div class="flipbook">
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div class="flipbookZi" >
+              <div class="row">
+                <div class="col-md-12">
+                  {{message}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-secondary button" @click="sort">
+                    To original order
+                  </button>
+                </div>
+                <div class="col-md-12">
+                  <draggable
+                    class="list-group"
+                    tag="ul"
+                    v-model="list"
+                    v-bind="dragOptions"
+                    @start="drag = true"
+                    @end="drag = false"
+                    @update="update">
+                    <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+                      <li
+                        class="list-group-item2"
+                        v-for="element in list"
+                        :key="element.order">
+                        <i :class="element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'"
+                          @click="element.fixed = !element.fixed"
+                          aria-hidden="true">
+                        </i>
+                        {{ element.name }}
+                      </li>
+                    </transition-group>
+                  </draggable>
+                </div>
+              </div>
+            </div>
+        </div>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-secondary button" @click="sort">
-          To original order
-        </button>
-      </div>
-      <div class="col-md-6">
-        <draggable
-          class="list-group"
-          tag="ul"
-          v-model="list"
-          v-bind="dragOptions"
-          @start="drag = true"
-          @end="drag = false"
-          @update="update">
-          <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-            <li
-              class="list-group-item2"
-              v-for="element in list"
-              :key="element.order">
-              <i :class="element.fixed ? 'fa fa-anchor' : 'glyphicon glyphicon-pushpin'"
-                @click="element.fixed = !element.fixed"
-                aria-hidden="true">
-              </i>
-              {{ element.name }}
-            </li>
-          </transition-group>
-        </draggable>
-      </div>
-
     </div>
-
 
   </div>
 </template>
@@ -62,30 +73,30 @@ export default {
       list: message.map((name, index) => {
         return { name, order: index + 1 };
       }),
-      drag: false
+      drag: false,
+      message:"你好啊",
+      fanyeData:[1,2,3,4,5,6,7,8,9]
     };
   },
   mounted(){
-        // console.log($("#app"))
-        this.fanye();
-    // this.$router.push({name:"imgUp"})
+    let that = this;
+    that.xinFanye();
+    // setTimeout(function(){
+    //   that.fanyeUpData();
+    // },6000)
   },
   methods: {
     update(val){
-      console.log(this.list)
     },
     sort() {
       this.list = this.list.sort((a, b) => a.order - b.order);
     },
     fanye(){
-      console.log($("#app"))
-        console.log($('#book'))
         var numberOfPages = 1000; 
         function addPage(page, book) {
             if (!book.turn('hasPage', page)) {
             var element = $('<div />', {'class': 'page '+((page%2==0) ? 'odd' : 'even'), 'id': 'page-'+page}).html('<i class="loader"></i>');
             book.turn('addPage', element, page);
-            console.log("111")
             setTimeout(function(){
                 element.html('<div class="data">Data for page '+page+'</div>');
             }, 1000);
@@ -122,22 +133,64 @@ export default {
             else if (e.keyCode==39)
                 $('#book').turn('next');
         });
+    },
+    xinFanye(){
+      function loadApp() {
+        $('.flipbook').turn({
+            width:922,
+            height:600,
+            elevation: 50,
+            gradients: true,
+            autoCenter: true
+        });
+        // $('.flipbook').turn('page', 3);   跳页
+        $(document).keydown(function(e){
+        var previous = 37, next = 39;
+        switch (e.keyCode) {
+          case previous:
+          $('.flipbook').turn('previous');
+          break;
+          case next:
+          $('.flipbook').turn('next');
+          break;
+        }
+        });	
+      }
+
+      yepnope({
+        test : Modernizr.csstransforms,
+        yep: ['../../static/turn.min.js'],
+        nope: ['../../static/turn.html4.min.js'],
+        both: ['../../static/css/basic.css'],
+        complete: loadApp
+      });
+
+    },
+    fanyeUpData(){
+      console.log("kaishi")
+      this.message="我不好";
+      // $('.flipbook').turn({
+      //     width:922,
+      //     height:600,
+      //     elevation: 50,
+      //     gradients: true,
+      //     autoCenter: true
+      // });
     }
   },
-  computed: {
-    dragOptions() {
-      return {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost"
-      };
-    }
-  }
-};
+      computed: {
+        dragOptions() {
+          return {
+            animation: 200,
+            group: "description",
+            disabled: false,
+            ghostClass: "ghost"
+          };
+        }
+      }
+    };
 </script>
     <style lang="scss">
-
         .chang{
         img{
             display: inline-block;
@@ -171,7 +224,6 @@ export default {
         background: red;
         display: inline-block;
         margin:10px;
-        /* transition: all 2s; */
         }
         .list-group-item2 i {
         cursor: pointer;
@@ -201,7 +253,6 @@ export default {
       }
       
       #book .loader{
-        // background-image:url(loader.gif);
         width:24px;
         height:24px;
         display:block;
@@ -229,13 +280,15 @@ export default {
       }
       
       #book .odd{
-        background-image:-webkit-linear-gradient(left, #FFF 95%, #ddd 100%);
-        background-image:-moz-linear-gradient(left, #FFF 95%, #ddd 100%);
-        background-image:-o-linear-gradient(left, #FFF 95%, #ddd 100%);
-        background-image:-ms-linear-gradient(left, #FFF 95%, #ddd 100%);
+        background: #fff;
+        background-image:-webkit-linear-gradient(left, #FFF 95%, #ddd 100%) !important;
+        background-image:-moz-linear-gradient(left, #FFF 95%, #ddd 100%) !important;
+        background-image:-o-linear-gradient(left, #FFF 95%, #ddd 100%) !important;
+        background-image:-ms-linear-gradient(left, #FFF 95%, #ddd 100%) !important;
       }
       
       #book .even{
+        background: #fff;
         background-image:-webkit-linear-gradient(right, #FFF 95%, #ddd 100%);
         background-image:-moz-linear-gradient(right, #FFF 95%, #ddd 100%);
         background-image:-o-linear-gradient(right, #FFF 95%, #ddd 100%);
