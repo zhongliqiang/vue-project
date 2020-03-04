@@ -37,17 +37,19 @@ export default {
       } else if (os.isPc) {
           type="pc";
       }
+      let width = document.body.clientWidth || document.documentElement.clientWidth;
+      let height = document.body.clientHeight || document.documentElement.clientHeight;
+      let json = {width:width,height:height}
       this.$store.commit({
         type: "deviceType",
         value: type
       }); 
+      this.$store.commit({
+        type: "documentWH",
+        value: json
+      }); 
     },
     getRem(pwidth,prem){
-alert(document.documentElement.clientWidth+"----"+document.documentElement.clientHeight)
-alert(document.body.clientWidth+"----"+document.body.clientHeight)
-// alert(document.documentElement.clientWidth+document.documentElement.clientHeight)
-
-
       var html = document.getElementsByTagName("html")[0];
       var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
       html.style.fontSize = oWidth/pwidth*prem + "px";
@@ -55,8 +57,8 @@ alert(document.body.clientWidth+"----"+document.body.clientHeight)
   },
   mounted(){
     let that = this;
-    that.getRem(720,100);
-    // window.addEventListener("resize", that.getRem(720,100), false)
+    that.getRem(750,100);
+    window.addEventListener("resize", that.getRem(750,100), false)
   }
 }
 

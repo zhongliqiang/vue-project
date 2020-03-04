@@ -1,6 +1,6 @@
 <template>
 
-  <div class="container-fluid">
+  <div class="container-fluid" :class="{'phone':deviceType == 'phone'}">
     <div class="row content">
         <div class="col-md-12 itemMsg">
           <el-input
@@ -84,7 +84,8 @@ export default {
   },
   computed: {
     ...mapState({
-      deviceType: state => state.deviceType
+      deviceType: state => state.deviceType,
+      documentWH: state => state.documentWH,
     }),
     dragOptions() {
       return {
@@ -208,14 +209,31 @@ export default {
 
     };
 </script>
-    <style lang="scss">
+    <style scoped lang="scss">
+        .container-fluid.phone{
+          padding:0 10px;
+          .itemUl{
+            height:auto;
+            max-height: calc(100vh - 120px - 50px - 60px);   //120 上 50 底部 60编辑+bottom
+            overflow: hidden;
+            .itemPic{
+              width:calc((100vw - 20px) / 3 - 20px);
+              height:calc((100vw - 20px) / 3 - 20px);
+              &.addIcon{
+                p{
+                  height:100%;
+                  width:100%;
+                  text-align: center;
+                  // line-height: 100%;
+                  line-height: calc((100vw - 20px) / 3 - 20px);
+                }
+              }
+            }
+          }
+        }
         .container-fluid{
           width:100%;
           height:100%;
-          // .content{
-          //   box-shadow: 0 0 10px #3580DE;
-          //   border-radius: 10px;
-          // }
           .itemMsg{
             text-align: left;
             padding:20px 15px;
@@ -243,8 +261,8 @@ export default {
             }
             .itemPicImg{
               display: inline-block;
-              width:120px;
-              height:120px;
+              width:100%;
+              height:100%;
               object-fit: cover;
               border-radius: 10px;
               overflow: hidden;
@@ -269,6 +287,8 @@ export default {
             display: block !important;
           }
         }
+     
+
         .flip-list-move {
         transition: transform 0.5s;
         }

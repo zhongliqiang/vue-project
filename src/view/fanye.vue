@@ -38,7 +38,9 @@ export default {
   },
   computed: {
     ...mapState({
-      deviceType: state => state.deviceType
+      deviceType: state => state.deviceType,
+      documentWH: state => state.documentWH,
+
     })
   },
   mounted(){
@@ -99,12 +101,11 @@ export default {
     xinFanye(){
       let that = this;
       function loadApp() {
-        that.deviceType;
         $('.flipbook').turn({
-            width:922,
-            height:600,
-            // width:375,
-            // height:812,
+            // width:922,
+            // height:600,
+            width:that.deviceType=="phone"?that.documentWH.width:922,
+            height:that.deviceType=="phone"?that.documentWH.height:600,
             elevation: 50,
             gradients: true,
             display: that.deviceType=="phone"?'single':"double",
@@ -140,7 +141,7 @@ export default {
 
     };
 </script>
-    <style lang="scss">
+    <style scoped lang="scss">
     .container-fluid{
       .flipbook-viewport{
         overflow:hidden;
@@ -169,7 +170,7 @@ export default {
       padding:0;
       .flipbook-viewport{
         .flipbookControl{
-          top:calc(100vh - 40px);
+          top:calc(100vh - 50px);
         }
         .flipbook{
           left:-50vw;
