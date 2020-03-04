@@ -1,9 +1,5 @@
 <template>
-  <div class="container-fluid" style="height:100%">
-    <div class="row">
-      <div class="col-md-12">
-      </div>
-    </div>
+  <div class="container-fluid" style="height:100%" :class="{'phone':deviceType == 'phone'}">
     <div class="flipbook-viewport">
       <div class="container2">
         <div class="flipbook" id="flipbook">
@@ -48,7 +44,7 @@ export default {
   mounted(){
     let that = this;
     that.xinFanye();
-    alert(that.deviceType)
+    // alert(that.deviceType)
   },
   methods: {
     editBook(val){
@@ -76,50 +72,6 @@ export default {
       arr.push({id:99999});
       arr.splice(arr.length-1,1)
     },
-    fanye(){
-      alert("cuowule")
-        var numberOfPages = 1000; 
-        function addPage(page, book) {
-            if (!book.turn('hasPage', page)) {
-            var element = $('<div />', {'class': 'page '+((page%2==0) ? 'odd' : 'even'), 'id': 'page-'+page}).html('<i class="loader"></i>');
-            book.turn('addPage', element, page);
-            setTimeout(function(){
-                element.html('<div class="data">Data for page '+page+'</div>');
-            }, 1000);
-            }
-        }
-        $(window).ready(function(){
-            $('#book').turn({acceleration: true,
-                pages: numberOfPages,
-                elevation: 50,
-                gradients: !$.isTouch,
-                when: {
-                    turning: function(e, page, view) {
-                    var range = $(this).turn('range', page);
-                    for (page = range[0]; page<=range[1]; page++) 
-                        addPage(page, $(this));
-    
-                    },
-    
-                    turned: function(e, page) {
-                    $('#page-number').val(page);
-                    }
-                }
-            });
-            $('#number-pages').html(numberOfPages);
-            $('#page-number').keydown(function(e){
-            if (e.keyCode==13)
-                $('#book').turn('page', $('#page-number').val());
-            });
-        });
-        $(window).bind('keydown', function(e){
-            if (e.target && e.target.tagName.toLowerCase()!='input')
-            if (e.keyCode==37)
-                $('#book').turn('previous');
-            else if (e.keyCode==39)
-                $('#book').turn('next');
-        });
-    },
     previousFun(){
       if(this.editBookTog == true){
         this.$message({
@@ -145,13 +97,17 @@ export default {
       $(".flipbook").turn("disable", true);
     },
     xinFanye(){
+      let that = this;
       function loadApp() {
+        that.deviceType;
         $('.flipbook').turn({
-            width:922,
-            height:600,
+            // width:922,
+            // height:600,
+            width:375,
+            height:812,
             elevation: 50,
             gradients: true,
-            // display: 'single',
+            display: that.deviceType=="phone"?'single':"double",
             autoCenter: true
         });
         // $('.flipbook').turn('page', 3);   跳页
@@ -185,48 +141,57 @@ export default {
     };
 </script>
     <style lang="scss">
-      .flipbookControl{
-        position:absolute;
-        top:calc(50% + 300px + 10px);
-        left:0;
-        right:0;
-        margin:auto;
-      }
+    .container-fluid{
       .flipbook-viewport{
         overflow:hidden;
         width:100%;
         height:100%;
+        .flipbookControl{
+          position:absolute;
+          top:calc(50% + 300px + 10px);
+          left:0;
+          right:0;
+          margin:auto;
+          z-index: 2;
+        }
+        .flipbook{
+          left:-461px;
+          top:-300px;
+        }
+        .page{
+          background-color:white;
+          background-repeat:no-repeat;
+          background-size:100% 100%;
+        }
       }
+    }
+    .container-fluid.phone{
+      padding:0;
+      .flipbook-viewport{
+        .flipbookControl{
+          top:calc(100vh - 40px);
+        }
+        .flipbook{
+          left:-50vw;
+          top:-50vh;
+        }
+      }
+    }
 
       .flipbook-viewport .container2{
         position:absolute;
         top:50%;
         left:50%;
         margin:auto;
+        z-index: 1;
       }
-
-      .flipbook-viewport .flipbook{
-        width:922px;
-        height:600px;
-        left:-461px;
-        top:-300px;
-      }
-
-      .flipbook-viewport .page{
-        width:461px;
-        height:600px;
-        background-color:white;
-        background-repeat:no-repeat;
-        background-size:100% 100%;
-      }
-
-      .flipbook .page{
-        -webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
-        -moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
-        -ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
-        -o-box-shadow:0 0 20px rgba(0,0,0,0.2);
-        box-shadow:0 0 20px rgba(0,0,0,0.2);
-      }
+      // .flipbook .page{
+      //   -webkit-box-shadow:0 0 20px rgba(0,0,0,0.2);
+      //   -moz-box-shadow:0 0 20px rgba(0,0,0,0.2);
+      //   -ms-box-shadow:0 0 20px rgba(0,0,0,0.2);
+      //   -o-box-shadow:0 0 20px rgba(0,0,0,0.2);
+      //   box-shadow:0 0 20px red;
+      // }
 
       .flipbook-viewport .page img{
         -webkit-touch-callout: none;
@@ -243,12 +208,11 @@ export default {
         -moz-transition: -moz-box-shadow 0.5s;
         -o-transition: -webkit-box-shadow 0.5s;
         -ms-transition: -ms-box-shadow 0.5s;
-
-        -webkit-box-shadow:0 0 20px #ccc;
-        -moz-box-shadow:0 0 20px #ccc;
-        -o-box-shadow:0 0 20px #ccc;
-        -ms-box-shadow:0 0 20px #ccc;
-        box-shadow:0 0 20px #ccc;
+        -webkit-box-shadow:0 0 20px #666;
+        -moz-box-shadow:0 0 20px #666;
+        -o-box-shadow:0 0 20px #666;
+        -ms-box-shadow:0 0 20px #666;
+        box-shadow:0 0 20px #666;
       }
 
       .flipbook .odd{
