@@ -27,7 +27,7 @@
             :move="getdata" 
             >
             <!-- <transition-group type="transition" :name="!drag ? 'flip-list' : null"> -->
-                <li class="list-group-item2 itemPic fl" :class="{'addIcon':item.id == 9999}" v-show="item.id !=9999 || item.id ==9999 && list.length<10 && editBook==true"
+                <li class=" itemPic fl" :class="{'addIcon':item.id == 9999}" v-show="item.id !=9999 || item.id ==9999 && list.length<10 && editBook==true"
                 v-for="(item , index) in list"
                 :key="item.id">
                   <div v-if="item.id != 9999" style="width:100%;height:100%">
