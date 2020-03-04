@@ -10,18 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: home
-    },
-    {
-      path: '/imgUp',
-      name: 'imgUp',
-      component: imgUp
-    },
-    {
-      path: '/fanye',
       name: 'fanye',
       component: fanye
-    }
+    },
+    // {
+    //   path: '/imgUp',
+    //   name: 'imgUp',
+    //   component: imgUp
+    // },
+    // {
+    //   path: '/fanye',
+    //   name: 'fanye',
+    //   component: fanye
+    // }
   ]
 })
