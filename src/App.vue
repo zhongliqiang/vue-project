@@ -41,9 +41,22 @@ export default {
         type: "deviceType",
         value: type
       }); 
+    },
+    getRem(pwidth,prem){
+alert(document.documentElement.clientWidth+"----"+document.documentElement.clientHeight)
+alert(document.body.clientWidth+"----"+document.body.clientHeight)
+// alert(document.documentElement.clientWidth+document.documentElement.clientHeight)
+
+
+      var html = document.getElementsByTagName("html")[0];
+      var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+      html.style.fontSize = oWidth/pwidth*prem + "px";
     }
   },
   mounted(){
+    let that = this;
+    that.getRem(720,100);
+    // window.addEventListener("resize", that.getRem(720,100), false)
   }
 }
 

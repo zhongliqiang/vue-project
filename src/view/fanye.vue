@@ -101,10 +101,10 @@ export default {
       function loadApp() {
         that.deviceType;
         $('.flipbook').turn({
-            // width:922,
-            // height:600,
-            width:375,
-            height:812,
+            width:922,
+            height:600,
+            // width:375,
+            // height:812,
             elevation: 50,
             gradients: true,
             display: that.deviceType=="phone"?'single':"double",
