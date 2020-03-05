@@ -80,13 +80,14 @@ body{
   border:2px solid red!important;
 }
 #app {
+  display: none;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #999;
   height: 100%;
-  /* background-image: url("assets/img/bg.png"); */
+  background-image: url("assets/img/bg.png");
   background-size: 100% 100%;
 }
 
