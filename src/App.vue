@@ -78,7 +78,7 @@ body {
 body{
   /* height:100%; */
   /* overflow: scroll; */
-  border:2px solid red!important;
+  box-shadow:  0 0 10px red inset;
 }
 #app {
   /* display: none; */
@@ -88,7 +88,8 @@ body{
   text-align: center;
   color: #999;
   height: 100%;
-  background-image: url("assets/img/bg.png");
+  /* zhe */
+  /* background-image: url("assets/img/bg.png"); */
   background-size: 100% 100%;
 }
 
