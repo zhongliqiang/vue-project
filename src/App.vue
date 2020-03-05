@@ -76,7 +76,7 @@ body {
   padding:0;
 }
 body{
-  height:100vh;
+  height:100%;
   border:2px solid red!important;
 }
 #app {
