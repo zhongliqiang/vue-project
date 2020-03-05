@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid" style="height:100%" :class="{'phone':deviceType == 'phone'}">
-    <div class="flipbook-viewport">
+    <!-- <div class="flipbook-viewport">
       <div class="container2">
         <div class="flipbook" id="flipbook">
             <div :class="{'first':item == 1,'last':item == fanyeData.length}" v-for="item in fanyeData" :key="item.id"><drag :dataArr="item.arr" :suoyinId="item.id" @dataChange="dataChange" @editBook="editBook"></drag></div>
@@ -9,7 +9,7 @@
       <div class="flipbookControl">
         <div> <el-button @click="previousFun">上一页</el-button><el-button @click="nextFun">下一页</el-button> </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

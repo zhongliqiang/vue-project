@@ -75,6 +75,9 @@ body {
   margin:0;
   padding:0;
 }
+body{
+  border:2px solid red;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -82,7 +85,7 @@ body {
   text-align: center;
   color: #999;
   height: 100%;
-  background-image: url("assets/img/bg.png");
+  /* background-image: url("assets/img/bg.png"); */
   background-size: 100% 100%;
 }
 
