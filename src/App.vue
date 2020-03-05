@@ -77,6 +77,7 @@ body {
 }
 body{
   height:100%;
+  overflow: scroll;
   border:2px solid red!important;
 }
 #app {
