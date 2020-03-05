@@ -145,6 +145,7 @@ export default {
 </script>
     <style scoped lang="scss">
     .container-fluid{
+      position: relative;
       .flipbook-viewport{
         overflow:hidden;
         width:100%;
@@ -172,7 +173,7 @@ export default {
       padding:0;
       .flipbook-viewport{
         .flipbookControl{
-          top:calc(100vh - 50px);
+          top:calc(100% - 50px);
         }
         .flipbook{
           left:-50vw;
