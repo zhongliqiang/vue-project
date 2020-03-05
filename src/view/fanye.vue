@@ -41,19 +41,25 @@ export default {
     ...mapState({
       deviceType: state => state.deviceType,
       documentWH: state => state.documentWH,
-
     })
   },
   mounted(){
     let that = this;
-    //zhe
-    // that.xinFanye();
-    // alert(that.deviceType)
+    that.xinFanye();
+    that.getWH();
+  },
+  watch:{
   },
   methods: {
     editBook(val){
       this.editBookTog = val;
       // alert(val)
+    },
+    getWH(){
+      let that = this;
+      if(that.deviceType == "phone"){
+            document.querySelector("#flipbook").style.top = -that.documentWH.height/2 +"px";
+      }
     },
     dataChange(data){
       let that = this;
@@ -177,7 +183,8 @@ export default {
         }
         .flipbook{
           left:-50vw;
-          top:-50vh;
+          //zhe
+          // top:-50%;
         }
       }
     }

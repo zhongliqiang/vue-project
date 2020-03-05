@@ -8,7 +8,17 @@
 export default {
   name: 'App',
   created(){
+    let that = this;
     this.getDeviceType();
+    that.getDefaultWH();
+    window.addEventListener("resize",that.getDefaultWH,false);
+  },
+  mounted(){
+    let that = this;
+    that.getRem(750,100);
+    window.addEventListener("resize", that.getRem(750,100), false);
+    that.stopsuofang();
+
   },
   methods:{
     getDeviceType(){
@@ -37,28 +47,57 @@ export default {
       } else if (os.isPc) {
           type="pc";
       }
-      let width = document.body.clientWidth || document.documentElement.clientWidth;
-      let height = document.body.clientHeight || document.documentElement.clientHeight;
-      let json = {width:width,height:height}
       this.$store.commit({
         type: "deviceType",
         value: type
       }); 
+    },
+    getDefaultWH(){
+      let that = this;
+      let width = that.getBrowserInterfaceSize().pageWidth;
+      let height = that.getBrowserInterfaceSize().pageHeight;
+      let json = {width:width,height:height}
       this.$store.commit({
         type: "documentWH",
         value: json
       }); 
     },
+    getBrowserInterfaceSize() {
+      var pageWidth = window.innerWidth;
+      var pageHeight = window.innerHeight;
+      if (typeof pageWidth != "number") {
+          //在标准模式下面
+          if (document.compatMode == "CSS1Compat" ) {
+              pageWidth = document.documentElement.clientWidth;
+              pageHeight = document.documentElement.clientHeight;
+          } else {
+              pageWidth = document.body.clientWidth;
+              pageHeight = window.body.clientHeight;
+          }
+      }
+
+      return {
+          pageWidth: pageWidth,
+          pageHeight: pageHeight
+      }
+    },
     getRem(pwidth,prem){
       var html = document.getElementsByTagName("html")[0];
       var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
       html.style.fontSize = oWidth/pwidth*prem + "px";
+    },
+    stopsuofang(){
+      window.onload = function() {
+        document.addEventListener('touchstart', function(event) {
+          if (event.touches.length > 1) {
+            event.preventDefault()
+          }
+        })
+        document.addEventListener('gesturestart', function(event) {
+          event.preventDefault()
+        })
+      }
     }
-  },
-  mounted(){
-    let that = this;
-    that.getRem(750,100);
-    window.addEventListener("resize", that.getRem(750,100), false)
   }
 }
 
