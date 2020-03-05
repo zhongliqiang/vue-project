@@ -1,7 +1,7 @@
 <template>
 
   <div class="container-fluid" :class="{'phone':deviceType == 'phone'}">
-    <div class="row content">
+    <div class="row content" style="height:calc(100% - 100px)">
         <div class="col-md-12 itemMsg">
           <el-input
           class="textarea"
@@ -15,7 +15,7 @@
           </el-input>
           <!-- {{message}} -->
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 itemCont">
             <draggable
             class="list-group itemUl"
             tag="ul"
@@ -41,13 +41,14 @@
             <!-- </transition-group> -->
             </draggable>
         </div>
+        <div class="col-md-12">
+          <el-button @click="editBookEdit" v-show="editBook == false"> 编辑 </el-button>
+          <el-button @click="editBookSure" v-show="editBook == true"> 保存 </el-button>
+          <input type="file" ref="upLoad" accept="image/*" multiple  @change="onFileChange" style="display:none">
+        </div>
     </div>
     <div class="row contentEdit">
-      <div class="col-md-12">
-        <el-button @click="editBookEdit" v-show="editBook == false"> 编辑 </el-button>
-        <el-button @click="editBookSure" v-show="editBook == true"> 保存 </el-button>
-        <input type="file" ref="upLoad" accept="image/*" multiple  @change="onFileChange" style="display:none">
-      </div>
+
     </div>
   </div>
 </template>
@@ -212,20 +213,23 @@ export default {
     <style scoped lang="scss">
         .container-fluid.phone{
           padding:0 10px;
-          .itemUl{
-            height:auto;
-            max-height: calc(100vh - 120px - 50px - 60px);   //120 上 50 底部 60编辑+bottom
+          .itemCont{
+            max-height: calc(100% - 120px);
             overflow: hidden;
-            .itemPic{
-              width:calc((100vw - 20px) / 3 - 20px);
-              height:calc((100vw - 20px) / 3 - 20px);
-              &.addIcon{
-                p{
-                  height:100%;
-                  width:100%;
-                  text-align: center;
-                  // line-height: 100%;
-                  line-height: calc((100vw - 20px) / 3 - 20px);
+            .itemUl{
+              height:auto;
+              // max-height: calc(100vh - 120px - 50px - 60px);   //120 上 50 底部 60编辑+bottom
+              .itemPic{
+                width:calc((100vw - 20px) / 3 - 20px);
+                height:calc((100vw - 20px) / 3 - 20px);
+                &.addIcon{
+                  p{
+                    height:100%;
+                    width:100%;
+                    text-align: center;
+                    // line-height: 100%;
+                    line-height: calc((100vw - 20px) / 3 - 20px);
+                  }
                 }
               }
             }
