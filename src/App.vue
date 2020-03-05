@@ -76,12 +76,12 @@ body {
   padding:0;
 }
 body{
-  height:100%;
-  overflow: scroll;
+  /* height:100%; */
+  /* overflow: scroll; */
   border:2px solid red!important;
 }
 #app {
-  display: none;
+  /* display: none; */
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
