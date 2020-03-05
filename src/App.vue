@@ -76,7 +76,7 @@ body {
   padding:0;
 }
 body{
-  border:2px solid red;
+  border:2px solid red!important;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
