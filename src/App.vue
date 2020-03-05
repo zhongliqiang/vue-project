@@ -128,8 +128,7 @@ body{
   text-align: center;
   color: #999;
   height: 100%;
-  /* zhe */
-  /* background-image: url("assets/img/bg.png"); */
+  background-image: url("assets/img/bg.png");
   background-size: 100% 100%;
 }
 
