@@ -76,6 +76,7 @@ body {
   padding:0;
 }
 body{
+  height:100vh;
   border:2px solid red!important;
 }
 #app {
