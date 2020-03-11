@@ -3,7 +3,6 @@
     <div class="flipbook-viewport">
       <div class="container2">
         <div class="flipbook" id="flipbook">
-            <!-- <div :class="{'first':item == 1,'last':item == fanyeData.length}" v-for="item in fanyeData" :key="item.id"></div> -->
             <div :class="{'first':item == 1,'last':item == fanyeData.length}" v-for="item in fanyeData" :key="item.id"><drag :dataArr="item.arr" :suoyinId="item.id" @dataChange="dataChange" @editBook="editBook"></drag></div>
         </div>
       </div>
