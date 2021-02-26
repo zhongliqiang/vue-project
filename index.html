@@ -13,6 +13,7 @@
   </head>
   <body>
     <div id="app">
+        <!-- <img id="aaa" src="" data-src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif" alt=""> -->
         fuck.
     </div>
     <!-- built files will be auto injected -->
@@ -35,6 +36,7 @@
                 // },500)
                 setInterval(function(){
                     if(tog){
+                        document.getElementById("aaa").src="";
                         document.body.removeChild(document.getElementById("aaa"));
                         tog=false;
                     }else{
