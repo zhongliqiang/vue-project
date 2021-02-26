@@ -13,7 +13,7 @@
   </head>
   <body>
     <div id="app">
-        <!-- <img id="aaa" src="" data-src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif" alt=""> -->
+        <img id="aaa" src="" data-src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif" alt="">
         fuck.
     </div>
     <!-- built files will be auto injected -->
@@ -25,30 +25,23 @@
             img.onload=function(){
                 this.imgLoad = true;
 
-                let tog = false;
-                let img = document.createElement('img');
-                img.id="aaa";
-                img.src=""
-                // setTimeout(function(){
-                    img.src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
-                    document.body.appendChild(img);
-                    tog=true;
                 // },500)
                 setInterval(function(){
-                    if(tog){
-                        document.getElementById("aaa").src="";
-                        document.body.removeChild(document.getElementById("aaa"));
-                        tog=false;
-                    }else{
-                        let img = document.createElement('img');
-                        img.id="aaa";
-                        img.src=""
-                        // setTimeout(function(){
-                            img.src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
-                            document.body.appendChild(img);
-                            tog=true;
-                        // },500)
-                    }
+                    // document.getElementById("aaa").src="";
+                    document.getElementById("aaa").src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
+                    // if(tog){
+                    //     document.body.removeChild(document.getElementById("aaa"));
+                    //     tog=false;
+                    // }else{
+                    //     let img = document.createElement('img');
+                    //     img.id="aaa";
+                    //     img.src=""
+                    //     // setTimeout(function(){
+                    //         img.src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
+                    //         document.body.appendChild(img);
+                    //         tog=true;
+                    //     // },500)
+                    // }
                 },3000)
             }
             img.onerror = function(){
