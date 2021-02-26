@@ -1,0 +1,2 @@
+webpackJsonp([2],{RCbX:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var r={render:function(){var e=this.$createElement;return(this._self._c||e)("section",{})},staticRenderFns:[]};var o=t("VU/8")({name:"OpenBlindBoxResult",data:function(){return{}},components:{},props:{},created:function(){},mounted:function(){},methods:{}},r,!1,function(e){t("trxH")},null,null);n.default=o.exports},trxH:function(e,n){}});
+//# sourceMappingURL=2.cd08a9704248da1515c3.js.map
