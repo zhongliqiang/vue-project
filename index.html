@@ -25,6 +25,14 @@
                 this.imgLoad = true;
 
                 let tog = false;
+                let img = document.createElement('img');
+                img.id="aaa";
+                img.src=""
+                // setTimeout(function(){
+                    img.src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
+                    document.body.appendChild(img);
+                    tog=true;
+                // },500)
                 setInterval(function(){
                     if(tog){
                         document.body.removeChild(document.getElementById("aaa"));
@@ -32,12 +40,12 @@
                     }else{
                         let img = document.createElement('img');
                         img.id="aaa";
-                        img.src="bb.png"
-                        document.body.appendChild(img);
-                        setTimeout(function(){
+                        img.src=""
+                        // setTimeout(function(){
                             img.src="http://x.autoimg.cn/2scimg/m/topic/20210226/bb_box_animation.gif";
+                            document.body.appendChild(img);
                             tog=true;
-                        },500)
+                        // },500)
                     }
                 },3000)
             }
